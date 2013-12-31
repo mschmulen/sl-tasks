@@ -27,33 +27,68 @@ module.exports = function(grunt) {
     grunt.log.writeln('grunt strongloop or grunt strongloop-community');
   });
   
+  /*
+  blogDemoServer                       loopback-mysql-example-try1
+  fib                                  sl-tasks
+  loopback-examples-ios                strongloop-dashboard
+  loopback-mobile-getting-started      templates
+  loopback-mobile-getting-started-yack vagrant-strongnode
+  loopback-mysql-example               vagrant-strongnode-mariadb
+  loopback-mysql-example-old           vagrant-strongnode-mongodb
+  */
+  
+  var githubrepos = [
+  //"git@github.com:strongloop-community/node-angular-raspberry-pi-dashboard.git",
+  //"git@github.com:strongloop-community/loopback-mysql-example.git ",
+  //"git@github.com:strongloop-community/strongloop-dashboard.git",
+  //"git@github.com:strongloop-community/vagrant-strongnode.git"
+  "git@github.com:strongloop/loopback-clients.git",
+  "git@github.com:strongloop/loopback-ios-getting-started.git",
+  "git@github.com:strongloop-community/loopback-mobile-getting-started.git",
+  "git@github.com:strongloop-community/loopback-examples-ios.git"
+  ];
+  
+  var treesFolder = "/Users/mattschmulen/sl-trees";
+  
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // StrongLoop Community iOS
+  // grunt strongloop-community
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  grunt.registerTask('clone', 'My "clone" task description.', function() {
+    //shell.exec('mdkir -p ' + treesFolder +';');
+    for ( var i = 0 ; i < githubrepos.length ; i++ )
+    {
+      shell.exec('cd ' + treesFolder + '; git clone '+ githubrepos[i] );
+    }
+  });
+  
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // StrongLoop Community iOS
   // grunt strongloop-community
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   grunt.registerTask('strongloop-community-loopback-mobile-getting-started', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop-community/loopback-mobile-getting-started/loopback-ios-app/loopback-ios-multi-model.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/loopback-mobile-getting-started/loopback-ios-app/loopback-ios-multi-model.xcodeproj" clean build');
   });
   
   grunt.registerTask('strongloop-community-ios-mapview-simple-example', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop-community/loopback-examples-ios/ios-mapview-simple-example/mapview-example.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/loopback-examples-ios/ios-mapview-simple-example/mapview-example.xcodeproj" clean build');
   });
   
   grunt.registerTask('strongloop-community-ios-remote-method-example', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop-community/loopback-examples-ios/ios-remote-method-example/remote-method.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/loopback-examples-ios/ios-remote-method-example/remote-method.xcodeproj" clean build');
   });
   
   grunt.registerTask('strongloop-community-ios-tableview-simple-example', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop-community/loopback-examples-ios/ios-tableview-simple-example/tableview-example.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/loopback-examples-ios/ios-tableview-simple-example/tableview-example.xcodeproj" clean build');
   });
   
   grunt.registerTask('strongloop-community-ios-filter-example', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop-community/loopback-examples-ios/ios-filter-example/ios-filter-example.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/loopback-examples-ios/ios-filter-example/ios-filter-example.xcodeproj" clean build');
   });
   
   grunt.registerTask('strongloop-community', 'My "strongloop-community" task description.', function() {
     grunt.task.run('strongloop-community-loopback-mobile-getting-started', 'strongloop-community-ios-mapview-simple-example','strongloop-community-ios-remote-method-example','strongloop-community-ios-tableview-simple-example','strongloop-community-ios-filter-example');
-  });  
+  });
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -65,11 +100,11 @@ module.exports = function(grunt) {
   });
   
   grunt.registerTask('strongloop-loopback-clients', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop/loopback-clients/ios/LoopBack.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/loopback-clients/ios/LoopBack.xcodeproj" clean build');
   });
   
   grunt.registerTask('strongloop-loopback-ios-getting-started', 'My "strongloop" task description.', function() {
-    shell.exec('xcodebuild -sdk iphonesimulator -project "/Users/mattschmulen/life-strongloop/trees/strongloop/loopback-ios-getting-started/LoopBackGuideApplication/LoopBackGuideApplication.xcodeproj" clean build');
+    shell.exec('xcodebuild -sdk iphonesimulator -project "' + treesFolder + '/  /LoopBackGuideApplication/LoopBackGuideApplication.xcodeproj" clean build');
   });
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
