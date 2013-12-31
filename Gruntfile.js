@@ -55,10 +55,10 @@ module.exports = function(grunt) {
   // StrongLoop Community iOS
   // grunt strongloop-community
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  grunt.registerTask('init', 'My "init" task description.', function() {
-  	shell.exec('mkdir -p ' + treesFolder +';');
+  grunt.registerTask('clean', 'My "init" task description.', function() {
+  	shell.exec('rm -rf' + treesFolder +';');
   });
-
+  
   grunt.registerTask('clone', 'My "clone" task description.', function() {
     shell.exec('mkdir -p ' + treesFolder +';');
     for ( var i = 0 ; i < githubrepos.length ; i++ )
@@ -66,6 +66,35 @@ module.exports = function(grunt) {
       shell.exec('cd ' + treesFolder + '; git clone '+ githubrepos[i] );
     }
   });
+  
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // xcodebuild -configuration ${BUILD_TYPE} -target ${TARGET_NAME} -arch ${CPU_ARCHITECTURE} -sdk ${SIMULATOR_OR_IOS_SDK} 
+  // xcodebuild -showsdks
+  // -xcconfig flag quite useful
+  // xcodebuild install
+  
+  // xcrun -sdk iphoneos Validation -online -upload -verbose "path to ipa"
+  
+  /*
+  
+  Simulator Tests
+	xcodebuild -workspace ${module.name}.xcworkspace test -scheme ${module.name} -destination OS=7.0,name=iPhone -destination-timeout=10 -configuration Debug
+  
+  Device Tests
+	xcodebuild -workspace ${module.name}.xcworkspace test -scheme ${module.name} -destination id=${device.name} -destination-timeout=10 -configuration Debug
+  
+  
+  All you need to do is copy the built .app from wherever XCode puts it to ~/Library/Application Support/iPhone Simulator/User/Applications/[somefolder]/, with a file named [somefolder].sb (alongside the folder, not in it) containing the following:
+  (version 1)
+  (debug deny)
+  (allow default)
+  Then launch /Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator. And select your App. Without Jailbreaking it's NOT possible to install it from outside the GUI.
+  */
+  
+  grunt.registerTask('sim', 'My "strongloop" task description.', function() {
+    shell.exec('xcodebuild -configuration Debug -sdk iphonesimulator7.0 -project "' + treesFolder + '/loopback-mobile-getting-started/loopback-ios-app/loopback-ios-multi-model.xcodeproj" clean build');
+  });
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // StrongLoop Community iOS
