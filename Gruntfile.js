@@ -49,14 +49,18 @@ module.exports = function(grunt) {
   "git@github.com:strongloop-community/loopback-examples-ios.git"
   ];
   
-  var treesFolder = "/Users/mattschmulen/sl-trees";
+  var treesFolder = "sl-trees";
   
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // StrongLoop Community iOS
   // grunt strongloop-community
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  grunt.registerTask('init', 'My "init" task description.', function() {
+  	shell.exec('mkdir -p ' + treesFolder +';');
+  });
+
   grunt.registerTask('clone', 'My "clone" task description.', function() {
-    //shell.exec('mdkir -p ' + treesFolder +';');
+    shell.exec('mkdir -p ' + treesFolder +';');
     for ( var i = 0 ; i < githubrepos.length ; i++ )
     {
       shell.exec('cd ' + treesFolder + '; git clone '+ githubrepos[i] );
