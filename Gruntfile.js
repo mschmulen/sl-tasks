@@ -41,6 +41,7 @@ module.exports = function(grunt) {
   //"git@github.com:strongloop-community/node-angular-raspberry-pi-dashboard.git",
   //"git@github.com:strongloop-community/loopback-mysql-example.git ",
   //"git@github.com:strongloop-community/strongloop-dashboard.git",
+  //"git@github.com:strongloop/loopback-example-access-control.git",
   //"git@github.com:strongloop-community/vagrant-strongnode.git"
   "git@github.com:strongloop/loopback-clients.git",
   "git@github.com:strongloop/loopback-ios-getting-started.git",
