@@ -49,6 +49,18 @@ module.exports = function(grunt) {
   "git@github.com:strongloop-community/loopback-examples-ios.git"
   ];
   
+  //strongloop-community repos
+  
+  
+  //strongloop repos
+  
+  
+  //mschmulen repos
+  // git@github.com:mschmulen/expenseApp.git
+  // git@github.com:mschmulen/ios7-javascript-bridge.git
+  // git@github.com:mschmulen/tracking-bluetooth-ibeacons-with-node.git
+  
+  
   var treesFolder = "/Users/mattschmulen/sl-trees";
   
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
